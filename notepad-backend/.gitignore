@@ -1,0 +1,63 @@
+# ===============================================
+# GITIGNORE PARA SPRING BOOT/JAVA (MAVEN/GRADLE)
+# ===============================================
+
+# 1. ARTEFATOS DE BUILD E OUTPUTS
+# -----------------------------------------------
+
+# Maven (Build padrão e pastas geradas)
+target/
+HELP.md
+.mvn/wrapper/maven-wrapper.jar
+pom.xml.tag
+pom.xml.versions
+pom.xml.bak
+release.properties
+dependency-reduced-pom.xml
+*.lock
+
+# Gradle (Build padrão e pastas geradas)
+/build/
+/out/
+.gradle/
+!**/src/main/**/build/  # Exceção comum para alguns projetos Gradle
+!**/src/test/**/build/
+
+# Exceções de Output (Para garantir que não ignore targets aninhados, se existirem)
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+
+# 2. ARQUIVOS E CACHES DE IDES (IGNORAR TUDO)
+# -----------------------------------------------
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### Eclipse / STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+# A pasta 'build/' do NetBeans já está coberta pela regra '/build/' na seção 1
+
+### VS Code ###
+.vscode/
+
+# 3. SISTEMA OPERACIONAL
+# -----------------------------------------------
+.DS_Store
+Thumbs.db
