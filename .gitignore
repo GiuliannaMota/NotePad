@@ -61,3 +61,48 @@ dependency-reduced-pom.xml
 # -----------------------------------------------
 .DS_Store
 Thumbs.db
+
+# -------------------------
+# Regras do Angular (notepad-frontend)
+# -------------------------
+
+# Compiled output (Ajuste dos caminhos)
+/notepad-frontend/dist
+/notepad-frontend/tmp
+/notepad-frontend/out-tsc
+/notepad-frontend/bazel-out
+
+# Node (Ajuste dos caminhos)
+/notepad-frontend/node_modules
+/notepad-frontend/npm-debug.log
+/notepad-frontend/yarn-error.log
+
+# IDEs and editors (Ajuste dos caminhos - Geralmente pode remover, mas mantendo por segurança)
+/notepad-frontend/.idea/
+/notepad-frontend/.project
+/notepad-frontend/.classpath
+/notepad-frontend/.c9/
+/notepad-frontend/*.launch
+/notepad-frontend/.settings/
+/notepad-frontend/*.sublime-workspace
+
+# Visual Studio Code (Ajuste dos caminhos)
+/notepad-frontend/.vscode/*
+!/notepad-frontend/.vscode/settings.json
+!/notepad-frontend/.vscode/tasks.json
+!/notepad-frontend/.vscode/launch.json
+!/notepad-frontend/.vscode/extensions.json
+/notepad-frontend/.history/*
+
+# Miscellaneous (Ajuste dos caminhos)
+/notepad-frontend/.angular/cache
+/notepad-frontend/.sass-cache/
+/notepad-frontend/connect.lock
+/notepad-frontend/coverage
+/notepad-frontend/libpeerconnection.log
+/notepad-frontend/testem.log
+/notepad-frontend/typings
+
+# System files (Estes geralmente não precisam de prefixo, se estiverem na raiz ou no subdiretório)
+.DS_Store
+Thumbs.db

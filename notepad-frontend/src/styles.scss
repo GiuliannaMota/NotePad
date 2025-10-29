@@ -1,0 +1,59 @@
+// src/styles.scss
+
+// 1. Importa o arquivo de tema (que contém a definição do tema Material)
+@use './app/theme'; 
+
+
+// ===============================================
+// 2. Variáveis de Tema (CSS Custom Properties) para Fundo Global
+//    Estas são usadas para o BODY e elementos não-Material (ou para sobrescrever)
+// ===============================================
+
+// Variáveis Padrão (Tema Claro/Light)
+:root {
+  // Cores de Superfície e Fundo (Baseadas no tema light do Material)
+  --color-background: #FAFAFA;       
+  --color-surface: #FFFFFF;          
+  --color-text: rgba(0, 0, 0, 0.87); 
+}
+
+// Tema Escuro/Dark
+.dark-theme {
+  // Cores de Superfície e Fundo (Adaptadas ao seu Violeta)
+  --color-background: #16171A;       
+  --color-surface: #1e1f23;          
+  --color-text: rgba(255, 255, 255, 0.87); 
+  --color-divider: #2A2B31;
+}
+
+
+// ===============================================
+// 3. Estilos Globais Base
+// ===============================================
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  
+  // Aplica as variáveis CSS Customizadas
+  background-color: var(--color-background);
+  color: var(--color-text);
+  
+  transition: background-color 0.3s, color 0.3s;
+}
+
+// ===============================================
+// 4. Estilos de Layout Específicos
+// ===============================================
+
+.app-container {
+  height: calc(100vh - 64px); 
+  // O background-color: var(--color-background) já está no body, 
+  // mas é bom manter para consistência.
+  background-color: var(--color-background);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
