@@ -20,7 +20,7 @@ export class NotaService {
     }
 
     //Obtém uma nota específica pelo ID
-    bterNotaPorId(id: number): Observable<Nota> {
+    obterNotaPorId(id: number): Observable<Nota> {
         return this.apiService.get<Nota>(`${this.ENDPOINT}/${id}`);
     }
 

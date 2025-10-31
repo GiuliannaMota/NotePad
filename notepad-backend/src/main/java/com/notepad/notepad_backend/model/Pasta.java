@@ -1,16 +1,10 @@
 package com.notepad.notepad_backend.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Pasta {
     
     @Id
@@ -26,4 +20,41 @@ public class Pasta {
         orphanRemoval = true
     )
     private List<Nota> notas = new ArrayList<>();
+
+    // CONSTRUTOR SEM ARGUMENTOS 
+    public Pasta() {
+    }
+
+    // CONSTRUTOR COM TODOS ARGUMENTOS
+    public Pasta(Long id, String nome, List<Nota> notas) {
+        this.id = id;
+        this.nome = nome;
+        this.notas = notas;
+    }
+
+    // --- GETTERS E SETTERS ---
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Nota> getNotas() {
+        return notas;
+    }
+
+    public void setNotas(List<Nota> notas) {
+        this.notas = notas;
+    }
 }

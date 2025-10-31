@@ -1,16 +1,10 @@
 package com.notepad.notepad_backend.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Tag {
     
     @Id
@@ -22,4 +16,41 @@ public class Tag {
     // --- Relacionamento N:M com Nota ---
     @ManyToMany(mappedBy = "tags")
     private Set<Nota> notas = new HashSet<>();
+
+    // CONSTRUTOR SEM ARGUMENTOS 
+    public Tag() {
+    }
+
+    // CONSTRUTOR COM TODOS ARGUMENTOS 
+    public Tag(Long id, String nome, Set<Nota> notas) {
+        this.id = id;
+        this.nome = nome;
+        this.notas = notas;
+    }
+
+    // --- GETTERS E SETTERS ---
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Set<Nota> getNotas() {
+        return notas;
+    }
+
+    public void setNotas(Set<Nota> notas) {
+        this.notas = notas;
+    }
 }

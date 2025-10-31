@@ -1,13 +1,11 @@
 package com.notepad.notepad_backend.service;
 
 import com.notepad.notepad_backend.model.Tag;
-import com.notepad.notepad_backend.model.Tag;
 import com.notepad.notepad_backend.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
-
 @Service
 public class TagService {
     

@@ -1,59 +1,86 @@
-// src/styles.scss
+// 1. Definições de Cores e Variáveis SCSS
 
-// 1. Importa o arquivo de tema (que contém a definição do tema Material)
-@use './app/theme'; 
+// Defina as variáveis de cor com base no seu PRD
+$color-primary: #6B2FCF;
+$color-secondary: #8E46FF;
 
+// Cores para Tema Escuro
+$color-background-dark: #16171A;
+$color-surface-dark: #1e1f23;
+$color-text-dark: #e7e8eb;
+$color-divider-dark: #2A2B31;
 
-// ===============================================
-// 2. Variáveis de Tema (CSS Custom Properties) para Fundo Global
-//    Estas são usadas para o BODY e elementos não-Material (ou para sobrescrever)
-// ===============================================
+// Cores para Tema Claro
+$color-background-light: #F5F5F5; 
+$color-surface-light: #FFFFFF;    
+$color-text-light: #333333;       
+$color-divider-light: #E0E0E0;    
 
-// Variáveis Padrão (Tema Claro/Light)
-:root {
-  // Cores de Superfície e Fundo (Baseadas no tema light do Material)
-  --color-background: #FAFAFA;       
-  --color-surface: #FFFFFF;          
-  --color-text: rgba(0, 0, 0, 0.87); 
-}
+// 2. Classes de Tema e Variáveis CSS
 
-// Tema Escuro/Dark
+// Tema Escuro (Padrão)
 .dark-theme {
-  // Cores de Superfície e Fundo (Adaptadas ao seu Violeta)
-  --color-background: #16171A;       
-  --color-surface: #1e1f23;          
-  --color-text: rgba(255, 255, 255, 0.87); 
-  --color-divider: #2A2B31;
+    --color-primary: #{$color-primary};
+    --color-secondary: #{$color-secondary};
+    --color-background: #{$color-background-dark};
+    --color-surface: #{$color-surface-dark};
+    --color-text: #{$color-text-dark};
+    --color-divider: #{$color-divider-dark};
+
+    background-color: var(--color-background);
+    color: var(--color-text);
+    
+    // Sobrescreve a cor do texto padrão em elementos que não herdam (como ícones do Material)
+    * {
+        color: var(--color-text);
+    }
 }
 
+// Tema Claro
+.light-theme {
+    --color-primary: #{$color-primary}; 
+    --color-secondary: #{$color-secondary};
+    --color-background: #{$color-background-light};
+    --color-surface: #{$color-surface-light};
+    --color-text: #{$color-text-light};
+    --color-divider: #{$color-divider-light};
 
-// ===============================================
-// 3. Estilos Globais Base
-// ===============================================
+    background-color: var(--color-background);
+    color: var(--color-text);
+    
+    * {
+        color: var(--color-text);
+    }
+}
 
+// ------------------------------------
+// 3. Estilos Base e do Angular Material
+// ------------------------------------
 html, body {
-  margin: 0;
-  height: 100%;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  
-  // Aplica as variáveis CSS Customizadas
-  background-color: var(--color-background);
-  color: var(--color-text);
-  
-  transition: background-color 0.3s, color 0.3s;
+    margin: 0;
+    height: 100%;
+    font-family: Roboto, "Helvetica Neue", sans-serif; /* Fonte padrão do Material */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-// ===============================================
-// 4. Estilos de Layout Específicos
-// ===============================================
-
-.app-container {
-  height: calc(100vh - 64px); 
-  // O background-color: var(--color-background) já está no body, 
-  // mas é bom manter para consistência.
-  background-color: var(--color-background);
+app-root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-.spacer {
-  flex: 1 1 auto;
+// Sobrescrita de cor do Material para o tema escuro
+.dark-theme {
+    .mat-button, .mat-icon-button {
+        color: var(--color-text);
+        &:hover {
+            background-color: rgba(var(--color-text-rgb), 0.04);
+        }
+    }
+}
+
+.light-theme {
+    .mat-button, .mat-icon-button {
+        color: var(--color-text);
+    }
 }
