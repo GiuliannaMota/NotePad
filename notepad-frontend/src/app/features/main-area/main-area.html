@@ -1,1 +1,23 @@
-<p>main-area works!</p>
+<div class="toggle-switch">
+  <mat-button-toggle-group 
+    #group="matButtonToggleGroup" 
+    [value]="viewMode" 
+    (change)="viewMode = $event.value">
+    
+    <mat-button-toggle value="gallery">Galeria de Notas</mat-button-toggle>
+    <mat-button-toggle value="editor">Criar Nota</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+
+<div class="content-area">
+  <app-gallery 
+    *ngIf="viewMode === 'gallery'"
+    (editNote)="switchToEditor($event)">
+  </app-gallery>
+  
+  <app-editor 
+    *ngIf="viewMode === 'editor'"
+    [note]="noteToEdit"
+    (saveComplete)="switchToGallery()">
+  </app-editor>
+</div>

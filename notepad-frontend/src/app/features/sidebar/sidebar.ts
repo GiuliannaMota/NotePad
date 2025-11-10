@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, Injectable } from '@angular/core'; 
+import { Component, OnInit, OnDestroy} from '@angular/core'; 
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms'; 
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'; 
 
 // Importações de Material (Mantidas)
@@ -18,22 +18,7 @@ import { Pasta, CreateUpdatePastaDTO } from '../../core/models/pasta.model';
 import { Tag, CreateUpdateTagDTO } from '../../core/models/tag.model'; 
 import { PastaService } from '../../core/services/pasta.service';
 import { TagService } from '../../core/services/tag.service';
-
-// --- Serviço de Estado Compartilhado (FilterStateService) ---
-export interface Filter {
-  type: 'all' | 'pasta' | 'tag';
-  id: number | null;
-}
-
-@Injectable({providedIn: 'root'})
-export class FilterStateService {
-  private filterSource = new Subject<Filter>();
-  currentFilter: Observable<Filter> = this.filterSource.asObservable(); 
-
-  setFilter(filter: Filter) {
-    this.filterSource.next(filter);
-  }
-}
+import { FilterStateService, Filter } from '../../core/services/filter-state.service';
 
 // --- Componente Sidebar ---
 @Component({
@@ -90,12 +75,11 @@ export class Sidebar implements OnInit, OnDestroy {
   carregarDadosIniciais(): void {
     this.listarPastas(); 
     this.listarTags();   
-    this.filterStateService.setFilter({ type: 'all', id: null });
+    this.filterStateService.setFilter({ type: 'all', id: -1 });
   }
 
   // LÓGICA DE LISTAGEM (Leitura) 
   listarPastas(): void {
-    // CORRIGIDO/ADAPTADO: Uso de 'listarPasta'
     this.pastaService.listarPasta().pipe(takeUntil(this.destroy$)).subscribe({
       next: data => this.pastas = data,
       error: (err) => console.error('Erro ao listar pastas:', err)
@@ -118,8 +102,6 @@ export class Sidebar implements OnInit, OnDestroy {
   }
 
   criarPasta(): void {
-    // 📢 LINHA DE TESTE: Avisa que a função começou
-    console.log('--- EXECUTANDO CRIAR PASTA ---');
 
     if (this.newPastaName.invalid) {
         console.warn('Criação abortada: Formulário Inválido.');
@@ -133,10 +115,6 @@ export class Sidebar implements OnInit, OnDestroy {
         this.newPastaName.reset();
         console.log('Pasta criada com sucesso! (Chama listarPastas())');
       },
-      // Adiciona um tratamento de erro para ver falhas da API
-        (error) => {
-            console.error('ERRO na API ao criar pasta:', error);
-        }
     );
   }
   
@@ -211,7 +189,7 @@ export class Sidebar implements OnInit, OnDestroy {
       this.pastaService.deletarPasta(id).pipe(takeUntil(this.destroy$)).subscribe(
         () => {
           this.listarPastas();
-          this.filterStateService.setFilter({ type: 'all', id: null }); 
+          this.filterStateService.setFilter({ type: 'all', id: -1 }); 
         }
       );
     }
@@ -222,14 +200,14 @@ export class Sidebar implements OnInit, OnDestroy {
       this.tagService.deletarTag(id).pipe(takeUntil(this.destroy$)).subscribe(
         () => {
           this.listarTags();
-          this.filterStateService.setFilter({ type: 'all', id: null });
+          this.filterStateService.setFilter({ type: 'all', id: -1 });
         }
       );
     }
   }
 
   // LÓGICA DE FILTRO 
-  selectFilter(type: 'all' | 'pasta' | 'tag', id: number | null): void {
+  selectFilter(type: 'all' | 'pasta' | 'tag', id: number): void {
     this.filterStateService.setFilter({ type, id });
   }
 }

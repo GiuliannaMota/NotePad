@@ -1,0 +1,13 @@
+<div class="note-gallery">
+  <app-note-card 
+    *ngFor="let nota of notas"
+    [nota]="nota"
+    (edit)="handleEdit(nota)"
+    (delete)="handleDelete(nota.id!)"> 
+  </app-note-card>
+  
+  <div *ngIf="notas.length === 0" class="empty-gallery">
+    <mat-icon>lightbulb_outline</mat-icon>
+    <p>Nenhuma nota encontrada. Crie uma nova nota ou ajuste seu filtro.</p>
+  </div>
+</div>
