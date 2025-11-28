@@ -26,8 +26,16 @@ public class NotaController {
     }
 
     @GetMapping
-    public List<NotaResponse> listarNotas() {
-        return notaService.listarTodas();
+    public List<NotaResponse> listarNotas(
+            @RequestParam(required = false) Long pastaId,
+            @RequestParam(required = false) Long tagId) {
+        if (pastaId != null) {
+            return notaService.listarNotasPorPasta(pastaId);
+        } else if (tagId != null) {
+            return notaService.listarNotasPorTag(tagId);
+        } else {
+            return notaService.listarTodas();
+        }
     }
 
     @GetMapping("/{id}")
@@ -35,28 +43,6 @@ public class NotaController {
         Optional<NotaResponse> nota = notaService.buscarPorId(id);
         return nota.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
-    }
-
-    // Endpoint Mestre-Detalhe: Filtra notas por pasta
-    @GetMapping("/por-pasta/{pastaId}")
-    public ResponseEntity<List<NotaResponse>> listarNotasPorPasta(@PathVariable Long pastaId) {
-        try {
-            List<NotaResponse> notas = notaService.listarNotasPorPasta(pastaId);
-            return ResponseEntity.ok(notas);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    //Endpoint Mestre-Detalhe: Filtrar notas por tag
-    @GetMapping("/por-tag/{tagId}")
-    public ResponseEntity<List<NotaResponse>> listarNotasPorTag(@PathVariable Long tagId) {
-        try {
-            List<NotaResponse> notas = notaService.listarNotasPorTag(tagId);
-            return ResponseEntity.ok(notas);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
     }
 
     @PutMapping("/{id}")

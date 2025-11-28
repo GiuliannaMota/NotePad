@@ -38,11 +38,10 @@
         </dependency>
 
         <!-- ✅ BANCO DE DADOS -->
-        <!-- H2 (para desenvolvimento e testes locais) -->
+        <!-- Supabase -->
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
         </dependency>
 
         <!-- ✅ FERRAMENTAS E TESTES -->

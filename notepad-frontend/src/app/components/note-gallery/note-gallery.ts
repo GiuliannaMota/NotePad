@@ -78,8 +78,8 @@ export class NoteGallery implements OnInit, OnChanges {
   }
 
   getPreview(conteudo: string): string {
-    // Remove tags HTML e pega os primeiros 150 caracteres
-    const plainText = conteudo.replace(/<[^>]*>/g, '');
+    // Remove tags HTML, substitui &nbsp; e pega os primeiros 150 caracteres
+    const plainText = conteudo.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ');
     return plainText.length > 150 ? plainText.substring(0, 150) + '...' : plainText;
   }
 

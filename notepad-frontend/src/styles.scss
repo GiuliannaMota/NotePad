@@ -16,7 +16,12 @@ html, body {
   background: var(--bg-main);
   color: #FFFFFF;
   font-family: "Inter", sans-serif;
-  font-size: 1.05rem; /* Slightly larger base font size */
+  font-size: 1.15rem; /* Larger base font size */
+}
+
+/* Aumenta a fonte do editor Quill */
+.ql-editor {
+  font-size: 1.25rem;
 }
 
 * {

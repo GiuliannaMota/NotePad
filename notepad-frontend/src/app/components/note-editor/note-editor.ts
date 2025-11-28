@@ -88,6 +88,10 @@ export class NoteEditor implements OnInit, OnChanges {
     this.selectedTags = [...nota.tags];
   }
 
+  comparePastas(p1: Pasta, p2: Pasta): boolean {
+    return p1 && p2 ? p1.id === p2.id : p1 === p2;
+  }
+
   toggleTag(tag: Tag): void {
     const index = this.selectedTags.findIndex(t => t.id === tag.id);
     if (index > -1) {

@@ -46,7 +46,7 @@ export class MainArea {
 
   onNoteSelected(nota: Nota): void {
     this.selectedNota = nota;
-    this.switchToEditor();
+    this.viewMode = 'editor';
   }
 
   onNotaSaved(nota: Nota): void {

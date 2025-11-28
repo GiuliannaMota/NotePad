@@ -21,8 +21,9 @@
         [(ngModel)]="nota.pasta"
         name="pasta"
         required
+        [compareWith]="comparePastas"
         data-bs-theme="dark" >
-        <option *ngIf="!nota.pasta" [ngValue]="undefined" disabled selected>Selecione uma pasta</option>
+        <option [ngValue]="undefined" disabled selected>Selecione uma pasta</option>
         <option *ngFor="let pasta of pastas" [ngValue]="pasta">
           {{ pasta.nome }}
         </option>
