@@ -2,43 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class ApiService {
-    //URL base da API do backend
-    public readonly API_BASE_URL = 'http://localhost:8080/api';
+  private apiUrl = 'http://localhost:8080/api'; // URL base do backend
 
-    constructor(private http: HttpClient) {}
+  constructor( ) { }
 
-    
-   //Realiza uma requisição GET
-  get<T>(endpoint: string, params?: any): Observable<T> {
-    let httpParams = new HttpParams();
-    
-    // Adiciona parâmetros de query se fornecidos
-    if (params) {
-      Object.keys(params).forEach(key => {
-        if (params[key] !== null && params[key] !== undefined) {
-          httpParams = httpParams.set(key, params[key]);
-        }
-      });
-    }
-
-    return this.http.get<T>(`${this.API_BASE_URL}${endpoint}`, { params: httpParams });
+  getApiUrl(): string {
+    return this.apiUrl;
   }
 
-  //Realiza uma requisição POST
-    post<T>(endpoint: string, data: any): Observable<T> {
-    return this.http.post<T>(`${this.API_BASE_URL}${endpoint}`, data);
+  setApiUrl(url: string): void {
+    this.apiUrl = url;
   }
-
-  //Realiza uma requisição PUT
-    put<T>(endpoint: string, data: any): Observable<T> {
-    return this.http.put<T>(`${this.API_BASE_URL}${endpoint}`, data);
-  }
-
-  //Realiza uma requisição DELETE
-    delete<T>(endpoint: string): Observable<T> {
-    return this.http.delete<T>(`${this.API_BASE_URL}${endpoint}`);
-  }
-
 }

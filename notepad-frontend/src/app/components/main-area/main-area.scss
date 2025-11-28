@@ -1,0 +1,64 @@
+// main-area.scss
+
+/* Variáveis HSL da sua Paleta para referência: */
+// --primary: 271 76% 39%; (Roxo)
+// --primary-foreground: 0 0% 100%; (Branco)
+// --muted-foreground: 0 0% 65%; (Cinza Claro)
+
+
+.main-area {
+  min-height: calc(100vh - 56px);
+  background-color: hsl(240 6% 4%); 
+
+  /* Estilização dos Botões de Toggle (Galeria/Editor) */
+  .btn-group {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem !important;
+
+    .btn {
+      padding: 0.5rem 0.5rem; 
+      font-size: 0.875rem; 
+      line-height: 1.5;
+    }
+    
+    .btn-outline-primary {
+      color: hsl(271 76% 39%);
+      border-color: hsl(271 76% 39%);
+      background-color: transparent;
+
+      &:hover, &:focus {
+        background-color: hsl(271 76% 39%);
+        color: hsl(0 0% 100%);
+        border-color: hsl(271 76% 39%);
+      }
+    }
+
+    .btn-check:checked + .btn-outline-primary,
+    .btn-outline-primary.active {
+      background-color: hsl(271 76% 39%);
+      color: hsl(0 0% 100%);
+      border-color: hsl(271 76% 39%);
+    }
+  }
+
+  .empty-gallery-message {
+    padding: 2rem;
+    text-align: center;
+    color: hsl(0 0% 65%); 
+    font-size: 1.1rem;
+    margin-top: 5rem;
+
+    width: 50%; 
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.custom-navbar-bg {
+  background-color: hsl(271 76% 39%) !important;
+  border-bottom-color: hsl(240 4% 15%) !important; 
+}

@@ -1,0 +1,119 @@
+// sidebar.scss
+
+/* Variáveis HSL da sua Paleta para referência: */
+// --background: 240 6% 4%; (Cor da main-area)
+// --primary: 271 76% 39%; (Roxo)
+// --border: 240 4% 12%; 
+// --muted-foreground: 0 0% 65%;
+
+.sidebar {
+  position: sticky;
+  top: 56px;
+  overflow-y: auto;
+  max-height: calc(100vh - 56px);
+  
+  /* REQUISITO 1: Aplicar a mesma cor de fundo da main-area */
+  background-color: hsl(240 6% 4%); 
+  border-color: hsl(240 4% 12%) !important; 
+
+  /* Botão Limpar Filtro */
+  .btn-outline-secondary {
+    border-color: hsl(240 4% 12%);
+    color: hsl(0 0% 100%);
+    
+    &:hover, &:focus {
+        background-color: hsl(240 4% 12%);
+        color: hsl(0 0% 100%);
+    }
+  }
+
+  /* NOVO: Estilo para os cabeçalhos (Pastas/Tags) (REQUISITO 3) */
+  .sidebar-header {
+      padding: 0.75rem 1rem;
+      font-weight: 500;
+      color: hsl(0 0% 100%); 
+      display: flex; /* Para alinhar título e botão '+' */
+      align-items: center;
+      border-bottom: 1px solid hsl(240 4% 12%); /* Separador visual */
+      margin-bottom: 0.5rem; /* Espaço para lista */
+  }
+
+  /* Estilização do Ícone de Criar (+) (REQUISITO 2) */
+  .btn-create-toggle {
+    color: hsl(0 0% 65%); 
+    margin-left: auto; /* Alinha o botão '+' à direita */
+
+    &:hover {
+      color: hsl(271 76% 39%); 
+    }
+  }
+
+  /* NOVO: Estilo para área de Input de Criação */
+  .creation-input-area {
+      padding: 0 1rem 0.5rem 1rem; 
+      /* Removida a borda para não ter duas bordas seguidas */
+  }
+
+  .btn-primary {
+    /* Cor de Fundo: Roxo (Primary) */
+    background-color: hsl(271 76% 39%) !important;
+    /* Cor da Borda: Roxo (Primary) */
+    border-color: hsl(271 76% 39%) !important;
+    /* Cor do Texto: Branco (Foreground) */
+    color: hsl(0 0% 100%) !important;
+
+    &:hover, &:focus {
+      /* Escurecimento no hover/focus */
+      background-color: hsl(271 76% 30%) !important;
+      border-color: hsl(271 76% 30%) !important;
+    }
+  }
+
+  /* Lista de Itens (Pastas/Tags) */
+  .list-group-item {
+    background-color: transparent !important;
+    color: hsl(0 0% 100%);
+    border-color: hsl(240 4% 12%) !important; 
+    
+    &.active {
+      background-color: hsl(271 76% 39%) !important; 
+      color: hsl(0 0% 100%) !important;
+      
+      .btn-outline-danger {
+          color: hsl(0 0% 100%) !important; 
+          &:hover {
+              background-color: hsl(0 84% 60%) !important;
+          }
+      }
+    }
+  }
+
+  .list-group-item {
+    // ... (estilos existentes)
+    
+    &.active {
+      background-color: hsl(271 76% 39%) !important; 
+      color: hsl(0 0% 100%) !important;
+      
+      .btn-outline-danger {
+          color: hsl(0 0% 100%) !important; 
+          &:hover {
+              background-color: hsl(0 84% 60%) !important;
+          }
+      }
+    }
+  }
+  
+  /* Botões dentro da lista (Lixeira) */
+  .btn-outline-danger {
+    color: hsl(0 0% 65%); 
+    border: none !important;
+  }
+  
+  /* Mensagem de Coleção Vazia */
+  .empty-collection-message {
+      padding: 0.75rem 1rem;
+      color: hsl(0 0% 65%); 
+      font-size: 0.85rem;
+  }
+}

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Tag {
     
@@ -15,6 +17,7 @@ public class Tag {
 
     // --- Relacionamento N:M com Nota ---
     @ManyToMany(mappedBy = "tags")
+    @JsonIgnore
     private Set<Nota> notas = new HashSet<>();
 
     // CONSTRUTOR SEM ARGUMENTOS 

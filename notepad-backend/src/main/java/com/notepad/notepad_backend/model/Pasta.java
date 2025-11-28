@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Pasta {
     
@@ -19,6 +21,7 @@ public class Pasta {
         cascade = CascadeType.ALL,
         orphanRemoval = true
     )
+    @JsonIgnore
     private List<Nota> notas = new ArrayList<>();
 
     // CONSTRUTOR SEM ARGUMENTOS 

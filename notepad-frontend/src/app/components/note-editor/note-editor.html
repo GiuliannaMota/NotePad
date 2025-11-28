@@ -1,0 +1,105 @@
+<div class="note-editor">
+  <form (ngSubmit)="saveNota()">
+    <div class="mb-3">
+      <label for="notaTitle" class="form-label">Título</label>
+      <input
+        type="text"
+        class="form-control"
+        id="notaTitle"
+        placeholder="Digite o título do título da nota"
+        [(ngModel)]="nota.titulo"
+        name="titulo"
+        required
+        data-bs-theme="dark" />
+    </div>
+
+    <div class="mb-3">
+      <label for="notaPasta" class="form-label">Pasta</label>
+      <select
+        class="form-select"
+        id="notaPasta"
+        [(ngModel)]="nota.pasta"
+        name="pasta"
+        required
+        data-bs-theme="dark" >
+        <option *ngFor="let pasta of pastas" [ngValue]="pasta">
+          {{ pasta.nome }}
+        </option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Tags</label>
+      
+      <div 
+        class="tags-container d-flex flex-wrap align-items-center"
+        (click)="toggleTagSelectionArea()"
+      >
+        
+        <span class="placeholder-text" *ngIf="selectedTags.length === 0">Selecione as tags...</span>
+
+        <span *ngFor="let tag of selectedTags" class="badge bg-info selected-tag-badge me-2">
+          {{ tag.nome }}
+          <button
+            type="button"
+            class="btn-close btn-close-white ms-1"
+            (click)="$event.stopPropagation(); removeTag(tag)"
+            aria-label="Remover tag"
+          ></button>
+        </span>
+        
+        <i class="bi bi-chevron-down ms-auto tag-dropdown-indicator"
+           [ngClass]="{'rotated': showAvailableTags}"></i> 
+      </div>
+
+      <div 
+        class="available-tags-popover mt-2"
+        *ngIf="showAvailableTags"
+      >
+        <div class="d-flex flex-wrap gap-2">
+          <button
+            *ngFor="let tag of allTags"
+            type="button"
+            class="badge tag-button"
+            [ngClass]="isTagSelected(tag) ? 'bg-primary' : 'bg-secondary'"
+            (click)="toggleTag(tag)"
+          >
+            {{ tag.nome }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="notaContent" class="form-label">Conteúdo</label>
+      <quill-editor
+        id="notaContent"
+        [(ngModel)]="nota.conteudo"
+        name="conteudo"
+        [modules]="quillConfig.modules"
+        placeholder="Digite o conteúdo da nota..."
+        data-bs-theme="dark"></quill-editor>
+    </div>
+
+    <div class="d-flex gap-2">
+      <button
+        type="submit"
+        class="btn btn-primary" [disabled]="isSaving"
+      >
+        <span *ngIf="!isSaving">{{ selectedNota ? 'Atualizar' : 'Criar' }} Nota</span>
+        <span *ngIf="isSaving">
+          <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+          Salvando...
+        </span>
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="cancelEdit()"
+        [disabled]="isSaving"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

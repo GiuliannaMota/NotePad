@@ -1,0 +1,19 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row g-0">
+    <!-- Sidebar: col-md-3 para desktop -->
+    <div class="col-md-3 p-0">
+      <app-sidebar
+        (filterByPasta)="onFilterByPasta($event)"
+        (filterByTag)="onFilterByTag($event)"
+        (clearFilter)="onClearFilter()"
+      ></app-sidebar>
+    </div>
+
+    <!-- Área Principal: col-md-9 para desktop -->
+    <div class="col-md-9">
+      <app-main-area></app-main-area>
+    </div>
+  </div>
+</div>

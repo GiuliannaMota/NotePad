@@ -1,0 +1,35 @@
+@use "sass:color";
+
+$primary-purple: hsl(271, 76%, 39%);
+$border-dark: hsl(240, 4%, 12%);
+
+.navbar {
+  height: 80px; 
+  color: #fff;
+  border-bottom: 1px solid $border-dark;
+
+  .navbar-brand {
+    font-weight: 700;
+    font-size: 24px; 
+  }
+
+  .nav-button {
+    background: $primary-purple !important;
+    border: none;
+    margin-left: 10px;
+    color: #fff;
+  }
+
+  .nav-button:hover {
+    background: color.adjust($primary-purple, $lightness: -5%) !important;
+  }
+}
+
+.toggle-sidebar {
+background: transparent;
+color: white;
+font-size: 1.6rem;
+}
+.toggle-sidebar:hover {
+opacity: 0.7;
+}

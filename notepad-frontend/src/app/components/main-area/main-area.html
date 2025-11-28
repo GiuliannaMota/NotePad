@@ -1,0 +1,44 @@
+<div class="main-area p-4">
+  <div class="btn-group mb-4" role="group" aria-label="Modo de visualização">
+    <input
+      type="radio"
+      class="btn-check"
+      name="viewMode"
+      id="galleryMode"
+      [checked]="viewMode === 'gallery'"
+      (change)="switchToGallery()"
+    />
+    <label class="btn btn-outline-primary" for="galleryMode">
+      📚 Galeria
+    </label>
+
+    <input
+      type="radio"
+      class="btn-check"
+      name="viewMode"
+      id="editorMode"
+      [checked]="viewMode === 'editor'"
+      (change)="switchToEditor()"
+    />
+    <label class="btn btn-outline-primary" for="editorMode">
+      ✏️ Nota
+    </label>
+  </div>
+
+  <div *ngIf="viewMode === 'gallery'">
+    <app-note-gallery
+      [filterByPastaId]="filterByPastaId"
+      [filterByTagId]="filterByTagId"
+      (noteSelected)="onNoteSelected($event)"
+      (noteDeleted)="onNoteDeleted($event)"
+    ></app-note-gallery>
+  </div>
+
+  <div *ngIf="viewMode === 'editor'">
+    <app-note-editor
+      [selectedNota]="selectedNota"
+      (notaSaved)="onNotaSaved($event)"
+      (notaCanceled)="onNotaCanceled()"
+    ></app-note-editor>
+  </div>
+</div>
