@@ -1,6 +1,7 @@
-.gallery-container {
+.note-gallery {
   padding: 20px;
-  background: var(--bg-main);
+  background: hsl(240 6% 4%);
+  color: #FFFFFF;
   height: 100%;
   overflow-y: auto;
 
@@ -8,6 +9,7 @@
     font-size: 1.4rem;
     margin-bottom: 15px;
     font-weight: 600;
+    color: #FFFFFF !important;
   }
 
   .notes-grid {
@@ -21,7 +23,8 @@
   }
 
   .note-card {
-    background: var(--card-bg);
+    background: #1d1e22;
+    color: #FFFFFF;
     padding: 16px;
     border-radius: 14px;
     border: 1px solid #222;
@@ -35,16 +38,27 @@
       transform: translateY(-2px);
     }
 
-    .note-title {
+    .card-title {
       font-weight: 600;
       margin-bottom: 6px;
-      color: var(--text-color);
-      font-size: 1rem;
+      color: #FFFFFF !important;
+      font-size: 1.15rem; /* Increased font size */
     }
 
-    .note-preview {
-      font-size: 0.85rem;
-      opacity: 0.8;
+    .card-text, .text-muted {
+      font-size: 1rem; /* Increased font size */
+      color: #FFFFFF !important; /* Explicitly white */
+      opacity: 0.9;
+    }
+
+    .badge {
+      color: #FFFFFF !important;
+      background-color: #1d1e22 !important; /* Use main background color */
+    }
+
+    small.text-muted {
+      opacity: 0.8 !important;
     }
   }
 }
+

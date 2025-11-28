@@ -5,7 +5,7 @@
 :root {
   --bg-main: #16171A;
   --bg-secondary: #1e1f23;
-  --text-color: #e7e8eb;
+  --text-color: #FFFFFF;
   --card-bg: #1d1e22;
   --accent: #6f42c1; /* roxo leve */
 }
@@ -14,8 +14,9 @@
 html, body {
   height: 100%;
   background: var(--bg-main);
-  color: var(--text-color);
+  color: #FFFFFF;
   font-family: "Inter", sans-serif;
+  font-size: 1.05rem; /* Slightly larger base font size */
 }
 
 * {
