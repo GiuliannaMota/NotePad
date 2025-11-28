@@ -69,9 +69,6 @@ export class NoteEditor implements OnInit, OnChanges {
     this.pastaService.getAll().subscribe({
       next: (pastas) => {
         this.pastas = pastas;
-        if (this.pastas.length > 0 && !this.nota.pasta) {
-          this.nota.pasta = this.pastas[0];
-        }
       },
       error: (err) => console.error('Erro ao carregar pastas:', err)
     });
@@ -163,8 +160,5 @@ export class NoteEditor implements OnInit, OnChanges {
   private resetForm(): void {
     this.nota = this.initializeNota();
     this.selectedTags = [];
-    if (this.pastas.length > 0) {
-      this.nota.pasta = this.pastas[0];
-    }
   }
 }
