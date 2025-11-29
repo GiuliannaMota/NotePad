@@ -9,7 +9,6 @@ public class TagResponse {
         this.nome = nome;
     }
 
-    // Getters and setters
     public Long getId() {
         return id;
     }

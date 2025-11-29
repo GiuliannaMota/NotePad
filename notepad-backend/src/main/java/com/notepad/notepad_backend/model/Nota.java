@@ -49,7 +49,6 @@ public class Nota {
     }
 
     // --- GETTERS E SETTERS  ---
-
     public Long getId() {
         return id;
     }

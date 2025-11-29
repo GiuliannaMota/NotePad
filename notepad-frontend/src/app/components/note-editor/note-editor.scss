@@ -11,9 +11,7 @@
   // Standardize all form control backgrounds
   .form-control,
   .form-select,
-  .tags-container,
-  quill-editor .ql-toolbar,
-  quill-editor .ql-container {
+  .tags-container {
     background-color: hsl(240, 5%, 8%) !important;
     border-color: hsl(240, 4%, 15%) !important;
     color: #FFFFFF !important;
@@ -98,60 +96,53 @@
     }
   }
 
-  /* Quill Editor Dark Theme */
-  quill-editor {
-      display: block; 
-      
-      .ql-toolbar {
-        // background-color is now handled by the generic rule above
-        border-left: none !important;
-        border-right: none !important;
-        border-top: none !important;
-        border-bottom: none !important; 
-        border-top-left-radius: 0.375rem;
-        border-top-right-radius: 0.375rem;
-      }
-      
-      .ql-container {
-        // background-color is now handled by the generic rule above
-        min-height: 300px;
-        border: none !important; 
-        border-top: none !important; 
-        border-bottom-left-radius: 0.375rem;
-        border-bottom-right-radius: 0.375rem;
-      }
-  }
+    /* Quill Editor Dark Theme */
+    quill-editor {
+        display: block; 
+        
+        .ql-toolbar {
+          background-color: hsl(240, 5%, 8%) !important; // now explicit
+          border: none !important; // remove all borders
+          border-bottom: 1px solid hsl(240, 4%, 15%) !important; // keep bottom border
+        }
+        
+        .ql-container {
+          background-color: hsl(240, 5%, 8%) !important; // now explicit
+          min-height: 300px;
+          border: none !important; // remove all borders
+        }
+    }
+    
+    .ql-editor {
+      color: #FFFFFF !important; 
+      min-height: 300px;
+      white-space: normal !important; 
+    }
   
-  .ql-editor {
-    color: #FFFFFF !important; 
-    min-height: 300px;
-    white-space: normal !important; 
-  }
-
-
-
-  .ql-snow .ql-stroke {
-    stroke: #FFFFFF !important;
-  }
-
-  .ql-snow .ql-fill {
-    fill: #FFFFFF !important;
-  }
-
-  .ql-snow .ql-picker-label {
-    color: #FFFFFF !important; 
-  }
-
-  .ql-toolbar button:hover,
-  .ql-toolbar button.ql-active {
-    background-color: hsl(240 5% 8% / 0.5) !important; 
-  }
-
-  .quill-wrapper {
-    border-radius: 0.375rem;
-    overflow: hidden;
-  }
-
+  
+  
+    .ql-snow .ql-stroke {
+      stroke: #FFFFFF !important;
+    }
+  
+    .ql-snow .ql-fill {
+      fill: #FFFFFF !important;
+    }
+  
+    .ql-snow .ql-picker-label {
+      color: #FFFFFF !important; 
+    }
+  
+    .ql-toolbar button:hover,
+    .ql-toolbar button.ql-active {
+      background-color: hsl(240 5% 8% / 0.5) !important; 
+    }
+  
+    .quill-wrapper {
+      border-radius: 0.375rem;
+      overflow: hidden;
+      border: 1px solid hsl(240, 4%, 15%); // Add border here
+    }
   /* Estilização de Botões */
   .btn-primary {
     background-color: hsl(271 76% 39%) !important;

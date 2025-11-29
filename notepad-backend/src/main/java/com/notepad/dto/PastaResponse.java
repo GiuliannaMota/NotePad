@@ -9,7 +9,6 @@ public class PastaResponse {
         this.nome = nome;
     }
 
-    // Getters and setters
     public Long getId() {
         return id;
     }

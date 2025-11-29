@@ -19,11 +19,6 @@ html, body {
   font-size: 1.15rem; /* Larger base font size */
 }
 
-/* Aumenta a fonte do editor Quill */
-.ql-editor {
-  font-size: 1.25rem;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -34,4 +29,47 @@ html, body {
 ::-webkit-scrollbar-thumb {
   background: #333;
   border-radius: 8px;
+}
+
+/* =================================== */
+/* Estilos Globais para o Quill Editor */
+/* =================================== */
+
+/* Contêiner principal do editor */
+quill-editor {
+  display: block;
+  border: 1px solid hsl(240, 4%, 15%) !important;
+  border-radius: 0.375rem !important;
+  overflow: hidden; /* Força os filhos a respeitarem as bordas arredondadas */
+}
+
+/* Barra de ferramentas */
+quill-editor .ql-toolbar {
+  background-color: hsl(240, 5%, 8%) !important;
+  border: none !important;
+  border-bottom: 1px solid hsl(240, 4%, 15%) !important;
+}
+
+/* Área de conteúdo */
+quill-editor .ql-container {
+  background-color: hsl(240, 5%, 8%) !important;
+  border: none !important;
+}
+
+/* Cor do texto e tamanho da fonte no editor */
+.ql-editor {
+  color: #FFFFFF !important;
+  font-size: 1.25rem !important;
+  min-height: 300px;
+  white-space: normal !important;
+}
+
+/* Cor dos ícones da toolbar */
+.ql-snow .ql-stroke,
+.ql-snow .ql-picker-label {
+  stroke: #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+.ql-snow .ql-fill {
+  fill: #FFFFFF !important;
 }

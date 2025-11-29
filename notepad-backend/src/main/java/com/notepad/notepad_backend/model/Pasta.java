@@ -36,7 +36,6 @@ public class Pasta {
     }
 
     // --- GETTERS E SETTERS ---
-
     public Long getId() {
         return id;
     }

@@ -1,4 +1,4 @@
-#  노트প্যাড - Seu Bloco de Notas Pessoal 📝
+#  NotePad - Seu Bloco de Notas Pessoal 📝
 
 Uma aplicação web moderna e elegante para criar, gerenciar e organizar suas anotações. Desenvolvida com uma arquitetura separando backend e frontend.
 

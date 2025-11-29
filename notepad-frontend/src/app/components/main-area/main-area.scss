@@ -7,7 +7,6 @@
 
 
 .main-area {
-  min-height: calc(100vh - 56px);
   background-color: hsl(240 6% 4%); 
 
   /* Estilização dos Botões de Toggle (Galeria/Editor) */
@@ -19,12 +18,12 @@
     gap: 0.5rem;
     margin-bottom: 1.5rem !important;
 
-    .btn {
-      padding: 0.5rem 0.5rem; 
-      font-size: 0.875rem; 
-      line-height: 1.5;
-    }
-    
+        .btn {
+          padding: 0.5rem 0.5rem;
+          font-size: 0.875rem;
+          line-height: 1.5;
+          font-weight: bold;
+        }    
     .btn-outline-primary {
       color: hsl(271 76% 39%);
       border-color: hsl(271 76% 39%);

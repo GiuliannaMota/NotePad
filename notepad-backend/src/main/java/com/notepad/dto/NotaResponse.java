@@ -27,7 +27,6 @@ public class NotaResponse {
                 .collect(Collectors.toSet());
     }
 
-    // Getters and setters
     public Long getId() {
         return id;
     }

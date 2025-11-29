@@ -1,37 +1,56 @@
-
 :host,
 :root {
   // Paleta Escura Customizada para o Bootstrap 5
-  --bs-body-bg: #16171A;        
-  --bs-body-color: #FFFFFF;     
-  --bs-border-color: #2A2B31;   
+  --bs-body-bg: #16171A;
+  --bs-body-color: #FFFFFF;
+  --bs-border-color: #2A2B31;
 
   // Cores Primárias (Roxo do Header e botões)
-  --bs-primary: #6B2FCF;        
+  --bs-primary: #6B2FCF;
   --bs-primary-rgb: 107, 47, 207;
 
   // Cor Secundária (Para detalhes/hover)
   --bs-secondary: #8E46FF;
 
   // Cores de Componentes (para garantir bom contraste em dark mode)
-  --bs-secondary-bg: #212529;   
-  --bs-tertiary-bg: #2A2B31;    
+  --bs-secondary-bg: #212529;
+  --bs-tertiary-bg: #2A2B31;
 
   // Fundo aplicado no :host (app-root)
   background-color: var(--bs-body-bg);
   color: var(--bs-body-color);
 }
 
-.navbar {
-  border-bottom: 1px solid var(--bs-border-color);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); 
-}
-
-.app-main {
-  height: calc(100vh - 56px);
-  overflow: hidden;
+:host {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+}
+
+app-header {
+  flex-shrink: 0;
+}
+
+.container-fluid {
+  flex-grow: 1;
+  padding: 0;
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+.row {
+  flex-grow: 1;
+}
+
+.col-md-10 {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.navbar {
+  border-bottom: 1px solid var(--bs-border-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 ::-webkit-scrollbar {
