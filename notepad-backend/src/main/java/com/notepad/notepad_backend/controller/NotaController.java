@@ -46,8 +46,8 @@ public class NotaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Nota> atualizar(@PathVariable Long id, @RequestBody NotaRequest notaRequest) {
-        Nota notaAtualizada = notaService.atualizar(id, notaRequest);
+    public ResponseEntity<NotaResponse> atualizar(@PathVariable Long id, @RequestBody NotaRequest notaRequest) {
+        NotaResponse notaAtualizada = notaService.atualizar(id, notaRequest);
         return ResponseEntity.ok(notaAtualizada);
     }
 

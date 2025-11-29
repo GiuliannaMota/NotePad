@@ -8,6 +8,8 @@ import com.notepad.notepad_backend.model.Tag;
 import com.notepad.notepad_backend.repository.NotaRepository;
 import com.notepad.notepad_backend.repository.PastaRepository;
 import com.notepad.notepad_backend.repository.TagRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,7 +47,7 @@ public class NotaService {
 
         if (notaRequest.getPastaId() != null) {
             Pasta pasta = pastaRepository.findById(notaRequest.getPastaId())
-                    .orElseThrow(() -> new RuntimeException("Pasta não encontrada"));
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pasta não encontrada com o ID: " + notaRequest.getPastaId()));
             nota.setPasta(pasta);
         }
 
@@ -75,26 +77,32 @@ public class NotaService {
     }
 
     @Transactional
-    public Nota atualizar(Long id, NotaRequest notaRequest) {
+    public NotaResponse atualizar(Long id, NotaRequest notaRequest) {
         return notaRepository.findById(id).map(nota -> {
             nota.setTitulo(notaRequest.getTitulo());
             nota.setConteudo(notaRequest.getConteudo());
 
             if (notaRequest.getPastaId() != null) {
                 Pasta pasta = pastaRepository.findById(notaRequest.getPastaId())
-                        .orElseThrow(() -> new RuntimeException("Pasta não encontrada"));
+                        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pasta não encontrada com o ID: " + notaRequest.getPastaId()));
                 nota.setPasta(pasta);
+            } else {
+                nota.setPasta(null); // Explicitly set to null if no pastaId is provided
             }
 
             if (notaRequest.getTagIds() != null && !notaRequest.getTagIds().isEmpty()) {
                 Set<Tag> tags = new HashSet<>(tagRepository.findAllById(notaRequest.getTagIds()));
                 nota.setTags(tags);
             } else {
+                if (nota.getTags() == null) {
+                    nota.setTags(new HashSet<>());
+                }
                 nota.getTags().clear();
             }
 
-            return notaRepository.save(nota);
-        }).orElseThrow(() -> new RuntimeException("Nota não encontrada"));
+            Nota savedNota = notaRepository.save(nota);
+            return new NotaResponse(savedNota);
+        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Nota não encontrada com o ID: " + id));
     }
 
     public Nota atualizar(Long id, Nota notaAtualizada) {
