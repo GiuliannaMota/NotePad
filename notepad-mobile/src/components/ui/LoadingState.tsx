@@ -13,7 +13,7 @@ export function LoadingState({
 }: LoadingStateProps) {
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large" color={colors.primary} />
+      <ActivityIndicator size="large" color={colors.primaryLight} />
       <Text style={styles.message}>{message}</Text>
     </View>
   );

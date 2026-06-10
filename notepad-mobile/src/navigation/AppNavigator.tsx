@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { FoldersScreen } from '../screens/Folders/FoldersScreen';
@@ -6,18 +6,42 @@ import { NoteDetailsScreen } from '../screens/Notes/NoteDetailsScreen';
 import { NoteFormScreen } from '../screens/Notes/NoteFormScreen';
 import { NotesListScreen } from '../screens/Notes/NotesListScreen';
 import { TagsScreen } from '../screens/Tags/TagsScreen';
+import { colors } from '../theme/colors';
 import type { RootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+const navigationTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: colors.background,
+    card: colors.backgroundSoft,
+    text: colors.text,
+    border: colors.border,
+    primary: colors.primary,
+  },
+};
+
 export function AppNavigator() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={navigationTheme}>
       <Stack.Navigator
         initialRouteName="NotesList"
         screenOptions={{
           headerShown: true,
           headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: colors.backgroundSoft,
+          },
+          headerTintColor: colors.text,
+          headerTitleStyle: {
+            fontWeight: '700',
+          },
+          headerShadowVisible: true,
+          contentStyle: {
+            backgroundColor: colors.background,
+          },
         }}
       >
         <Stack.Screen

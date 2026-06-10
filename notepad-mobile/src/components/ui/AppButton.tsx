@@ -2,20 +2,23 @@ import {
   ActivityIndicator,
   Pressable,
   PressableProps,
+  StyleProp,
   StyleSheet,
   Text,
+  ViewStyle,
 } from 'react-native';
 
 import { colors } from '../../theme/colors';
 import { spacing } from '../../theme/spacing';
 import { typography } from '../../theme/typography';
 
-type ButtonVariant = 'primary' | 'outline' | 'danger';
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'danger';
 
-type AppButtonProps = PressableProps & {
+type AppButtonProps = Omit<PressableProps, 'style'> & {
   title: string;
   variant?: ButtonVariant;
   isLoading?: boolean;
+  style?: StyleProp<ViewStyle>;
 };
 
 export function AppButton({
@@ -30,11 +33,11 @@ export function AppButton({
 
   return (
     <Pressable
-      style={(state) => [
+      style={[
         styles.button,
         styles[variant],
         isDisabled && styles.disabled,
-        typeof style === 'function' ? style(state) : style,
+        style,
       ]}
       disabled={isDisabled}
       {...rest}
@@ -52,14 +55,14 @@ export function AppButton({
 
 function getTextColor(variant: ButtonVariant) {
   if (variant === 'primary') {
-    return colors.surface;
+    return colors.text;
   }
 
   if (variant === 'danger') {
     return colors.danger;
   }
 
-  return colors.primary;
+  return colors.text;
 }
 
 const styles = StyleSheet.create({
@@ -73,14 +76,21 @@ const styles = StyleSheet.create({
   },
   primary: {
     backgroundColor: colors.primary,
-  },
-  outline: {
-    backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.primary,
   },
+  secondary: {
+    backgroundColor: colors.surfaceMuted,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  outline: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
   danger: {
-    backgroundColor: colors.surface,
+    backgroundColor: 'transparent',
     borderWidth: 1,
     borderColor: colors.danger,
   },
