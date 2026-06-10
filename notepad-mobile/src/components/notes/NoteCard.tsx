@@ -50,7 +50,7 @@ export function NoteCard({ note, onPress }: NoteCardProps) {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.surface,
-    borderRadius: 12,
+    borderRadius: 14,
     padding: spacing.md,
     borderWidth: 1,
     borderColor: colors.border,
@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
   },
   content: {
     fontSize: typography.body,
-    color: colors.textMuted,
+    color: colors.text,
+    opacity: 0.9,
     lineHeight: 22,
     marginBottom: spacing.sm,
   },
@@ -73,7 +74,8 @@ const styles = StyleSheet.create({
   },
   meta: {
     fontSize: typography.caption,
-    color: colors.textMuted,
+    color: colors.text,
+    opacity: 0.75,
   },
   tagsContainer: {
     flexDirection: 'row',

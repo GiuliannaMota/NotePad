@@ -77,14 +77,14 @@ export function NotesListScreen({ navigation }: Props) {
           <View style={styles.secondaryActions}>
             <AppButton
               title="Pastas"
-              variant="outline"
+              variant="secondary"
               onPress={handleOpenFolders}
               style={styles.secondaryButton}
             />
 
             <AppButton
               title="Tags"
-              variant="outline"
+              variant="secondary"
               onPress={handleOpenTags}
               style={styles.secondaryButton}
             />
@@ -101,7 +101,7 @@ export function NotesListScreen({ navigation }: Props) {
           <RefreshControl
             refreshing={isLoading}
             onRefresh={loadNotes}
-            tintColor={colors.primary}
+            tintColor={colors.primaryLight}
           />
         }
         contentContainerStyle={[
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
-    padding: spacing.md,
+    padding: spacing.lg,
   },
   header: {
     marginBottom: spacing.lg,
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing.sm,
   },
   listContent: {
-    gap: spacing.md,
+    gap: 14,
     paddingBottom: spacing.xl,
   },
   emptyListContent: {
