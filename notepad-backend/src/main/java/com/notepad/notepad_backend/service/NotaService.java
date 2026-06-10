@@ -1,30 +1,35 @@
 package com.notepad.notepad_backend.service;
 
-import com.notepad.dto.NotaResponse;
-import com.notepad.dto.NotaRequest;
-import com.notepad.notepad_backend.model.Nota;
-import com.notepad.notepad_backend.model.Pasta;
-import com.notepad.notepad_backend.model.Tag;
-import com.notepad.notepad_backend.repository.NotaRepository;
-import com.notepad.notepad_backend.repository.PastaRepository;
-import com.notepad.notepad_backend.repository.TagRepository;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
+
+import com.notepad.dto.NotaRequest;
+import com.notepad.dto.NotaResponse;
+import com.notepad.dto.ResumoNotaResponse;
+import com.notepad.notepad_backend.model.Nota;
+import com.notepad.notepad_backend.model.Pasta;
+import com.notepad.notepad_backend.model.Tag;
+import com.notepad.notepad_backend.repository.NotaRepository;
+import com.notepad.notepad_backend.repository.PastaRepository;
+import com.notepad.notepad_backend.repository.TagRepository;
+
 @Service
 public class NotaService {
 
     @Autowired
     private NotaRepository notaRepository;
+
+    @Autowired
+    private GeminiService geminiService;
 
     @Autowired
     private PastaRepository pastaRepository;
@@ -137,5 +142,41 @@ public class NotaService {
         }
 
         return notas.stream().map(NotaResponse::new).collect(Collectors.toList());
+    }
+
+    @Transactional
+    public ResumoNotaResponse gerarResumo(Long id) {
+        Nota nota = notaRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Nota não encontrada com o ID: " + id
+                ));
+
+        String conteudoLimpo = limparHtml(nota.getConteudo());
+
+        if (conteudoLimpo.isBlank()) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Não é possível gerar resumo para uma nota sem conteúdo."
+            );
+        }
+
+        String resumo = geminiService.gerarResumo(nota.getTitulo(), conteudoLimpo);
+
+        nota.setResumo(resumo);
+        notaRepository.save(nota);
+
+        return new ResumoNotaResponse(nota.getId(), resumo);
+    }
+
+    private String limparHtml(String conteudo) {
+        if (conteudo == null) {
+            return "";
+        }
+
+        return conteudo
+                .replaceAll("<[^>]*>", " ")
+                .replaceAll("\\s+", " ")
+                .trim();
     }
 }

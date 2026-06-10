@@ -10,6 +10,7 @@ public class NotaResponse {
     private Long id;
     private String titulo;
     private String conteudo;
+    private String resumo;
     private Date dataCriacao;
     private PastaResponse pasta;
     private Set<TagResponse> tags;
@@ -18,9 +19,12 @@ public class NotaResponse {
         this.id = nota.getId();
         this.titulo = nota.getTitulo();
         this.conteudo = nota.getConteudo();
+        this.resumo = nota.getResumo();
         this.dataCriacao = nota.getDataCriacao();
         if (nota.getPasta() != null) {
-            this.pasta = new PastaResponse(nota.getPasta().getId(), nota.getPasta().getNome());
+            this.pasta = new PastaResponse(
+                nota.getPasta().getId(), 
+                nota.getPasta().getNome());
         }
         this.tags = nota.getTags().stream()
                 .map(tag -> new TagResponse(tag.getId(), tag.getNome()))
@@ -73,5 +77,13 @@ public class NotaResponse {
 
     public void setTags(Set<TagResponse> tags) {
         this.tags = tags;
+    }
+
+    public String getResumo() {
+        return resumo;
+    }
+
+    public void setResumo(String resumo) {
+        this.resumo = resumo;
     }
 }

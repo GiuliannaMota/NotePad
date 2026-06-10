@@ -1,15 +1,25 @@
 package com.notepad.notepad_backend.controller;
 
-import com.notepad.dto.NotaRequest;
-import com.notepad.dto.NotaResponse;
-import com.notepad.notepad_backend.model.Nota;
-import com.notepad.notepad_backend.service.NotaService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.notepad.dto.NotaRequest;
+import com.notepad.dto.NotaResponse;
+import com.notepad.dto.ResumoNotaResponse;
+import com.notepad.notepad_backend.model.Nota;
+import com.notepad.notepad_backend.service.NotaService;
 
 @RestController
 @RequestMapping("/api/notas")
@@ -54,5 +64,11 @@ public class NotaController {
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         notaService.deletar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{id}/resumo")
+    public ResponseEntity<ResumoNotaResponse> gerarResumo(@PathVariable Long id) {
+        ResumoNotaResponse response = notaService.gerarResumo(id);
+        return ResponseEntity.ok(response);
     }
 }
