@@ -1,9 +1,22 @@
 package com.notepad.notepad_backend.model;
 
-import jakarta.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 public class Nota {
@@ -16,6 +29,9 @@ public class Nota {
 
     @Lob
     private String conteudo;
+
+    @Lob
+    private String resumo;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao = new Date();
@@ -95,5 +111,13 @@ public class Nota {
 
     public void setTags(Set<Tag> tags) {
         this.tags = tags;
+    }
+
+    public String getResumo() {
+    return resumo;
+}
+
+    public void setResumo(String resumo) {
+        this.resumo = resumo;
     }
 }
